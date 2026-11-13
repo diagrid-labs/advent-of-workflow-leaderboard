@@ -1,5 +1,7 @@
 # Advent of Workflow: leaderboard
 
+![The interior of North Pole Station: elves in silver jumpsuits working banks of 1950s mainframe consoles and green phosphor screens under a riveted glass dome, with the sleigh waiting on its launch cradle through the open hangar door](advent-of-workflow-hero.jpg)
+
 Standings and submissions for [Advent of Workflow](https://diagrid.io/advent-of-workflow), twelve Dapr Workflow challenges run by [Diagrid](https://www.diagrid.io) and open to everyone! The challenges live in [`diagrid-labs/advent-of-workflow`](https://github.com/diagrid-labs/advent-of-workflow). This repo is where you submit and where the standings live.
 
 Challenges drop on 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21 and 23 December 2026. Submissions close **24 December 2026, 23:59 CET**. Results are announced **28 December 2026**.
