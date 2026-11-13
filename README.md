@@ -28,7 +28,7 @@ A maintainer regenerates the table from the submission issues. Do not edit it in
 
 A submission is **an issue in this repo**, not a pull request. You need your work in a public repo and a screenshot. Setup is described in the [challenge repo](https://github.com/diagrid-labs/advent-of-workflow).
 
-1. Open the [submission form](https://github.com/diagrid-labs/advent-of-workflow-leaderboard/issues/new/choose) and pick **Submission**.
+1. Open the [submission form](https://github.com/diagrid-labs/advent-of-workflow-leaderboard/issues/new?template=submission.yml).
 2. Fill in the challenge number, link your work, and drag the screenshot into the screenshot box. Add the optional Diagrid screenshot if you did the bonus step.
 3. Submit the issue. The reviewer takes it from there.
 
