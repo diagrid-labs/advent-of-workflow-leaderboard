@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Rules, prizes and registration
+    url: https://diagrid.io/advent-of-workflow
+    about: Everything about Advent of Workflow, including how to register.
+  - name: The challenges, and how to set up your machine
+    url: https://github.com/diagrid-labs/advent-of-workflow
+    about: Read the challenge repo's README before you submit. Questions belong there, not in an issue here.

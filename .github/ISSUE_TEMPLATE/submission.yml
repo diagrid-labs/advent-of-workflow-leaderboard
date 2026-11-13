@@ -1,0 +1,94 @@
+name: Submission
+description: Submit one Advent of Workflow challenge for review.
+title: "Submission: challenge "
+labels: ["submission", "pending"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **One issue per challenge.** Open a separate issue for each challenge you submit.
+
+        If a challenge fails, do not open a new issue: fix your work and add a comment to
+        this same issue saying it is ready for another look.
+
+        Do not put your email address anywhere in this issue. Your GitHub handle is how we
+        match a submission to a registration, and this issue is public and permanent.
+
+  - type: dropdown
+    id: challenge
+    attributes:
+      label: Challenge number
+      description: Which challenge is this? One issue per challenge.
+      options:
+        - "1"
+        - "2"
+        - "3"
+        - "4"
+        - "5"
+        - "6"
+        - "7"
+        - "8"
+        - "9"
+        - "10"
+        - "11"
+        - "12"
+    validations:
+      required: true
+
+  - type: input
+    id: work
+    attributes:
+      label: Link to your work
+      description: >
+        Your fork of diagrid-labs/advent-of-workflow, holding the workflow app for this
+        challenge. Link the directory or branch for this challenge, not just the repo root,
+        and make sure the fork is public so the reviewer can read it.
+      placeholder: https://github.com/<your-handle>/advent-of-workflow/tree/main/challenge-01
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: Screenshot of the workflow run
+      description: >
+        Drag the image into this box to attach it. For a Dapr OSS run that is the workflow
+        run detail page in the Dapr Dev Dashboard. For a Diagrid run it is the workflow
+        diagram showing the activities in the Diagrid web console.
+      placeholder: Attach the image here.
+    validations:
+      required: true
+
+  - type: textarea
+    id: bonus
+    attributes:
+      label: Diagrid bonus evidence (optional)
+      description: >
+        Optional. The workflow diagram in the Diagrid web console, for the same workflow run
+        on Diagrid. It earns no extra pass and never changes your rank. It is the count the
+        two LEGO Game Boy sets are decided on. Leave this empty to skip it.
+      placeholder: Attach the Diagrid web console screenshot here, or leave empty.
+    validations:
+      required: false
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything the reviewer should know (optional)
+      description: Which language you used, a design choice you want to explain, a known rough edge.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: declaration
+    attributes:
+      label: Before you submit
+      options:
+        - label: The work is my own, and the screenshot is a real screenshot of a real run.
+          required: true
+        - label: The repository I linked is public, and it stays public until results are announced on 28 December 2026.
+          required: true
+        - label: This issue contains no email address or other personal contact details.
+          required: true
+        - label: I have read the [Code of Conduct](https://github.com/diagrid-labs/advent-of-workflow-leaderboard/blob/main/CODE_OF_CONDUCT.md).
+          required: true
