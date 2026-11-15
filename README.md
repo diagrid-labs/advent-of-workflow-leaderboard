@@ -4,7 +4,7 @@
 
 Standings and submissions for [Advent of Workflow](https://diagrid.io/advent-of-workflow), twelve Dapr Workflow challenges run by [Diagrid](https://www.diagrid.io) and open to everyone! The challenges live in [`diagrid-labs/advent-of-workflow`](https://github.com/diagrid-labs/advent-of-workflow). This repo is where you submit and where the standings live.
 
-Challenges drop on 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21 and 23 December 2026. Submissions close **24 December 2026, 23:59 CET**. Results are announced **28 December 2026**.
+Challenges drop on 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21 and 23 December 2026. Submissions close **Sunday 3 January 2027, 23:59 CET**. Results are announced **Wednesday 13 January 2027**.
 
 North Pole Station has run on TINSEL — Tracking, Inventory, Scheduling and Elf Logistics — since 1957, and the old mainframe is finally failing: it drops jobs halfway through and keeps no record that they ever started. It cannot be taken down for repair, because the launch window does not move. So the station is being rebuilt one subsystem at a time, as durable workflows, and that is what each challenge asks you to build. Read the full story [here](STORY.md).
 
@@ -40,7 +40,7 @@ Submissions are matched to your registration on your GitHub handle, so register 
 
 ### Link to your work
 
-Your fork of [`diagrid-labs/advent-of-workflow`](https://github.com/diagrid-labs/advent-of-workflow), with one directory or branch per challenge. It must be **public** so the reviewer can read it, and it must stay public until results are announced on 28 December 2026. Link the directory or branch holding this challenge's app, not just the repo root.
+Your fork of [`diagrid-labs/advent-of-workflow`](https://github.com/diagrid-labs/advent-of-workflow), with one directory or branch per challenge. It must be **public** so the reviewer can read it, and it must stay public until results are announced on 13 January 2027. Link the directory or branch holding this challenge's app, not just the repo root.
 
 ### Evidence
 
@@ -59,7 +59,7 @@ The verdict is recorded as a label on your issue and as a comment explaining it:
 - **`pass`** — the issue is closed and the standings are updated.
 - **`fail`** — the issue stays **open**, labelled `fail`, with a comment saying what is missing.
 
-**Resubmitting after a fail:** do not open a new issue. Fix your work and add a comment to the same issue saying it is ready for another look. The reviewer removes the `fail` label, sets `pending` again and re-reviews. You can resubmit until submissions close on 24 December 2026, 23:59 CET. Nothing is accepted after that.
+**Resubmitting after a fail:** do not open a new issue. Fix your work and add a comment to the same issue saying it is ready for another look. The reviewer removes the `fail` label, sets `pending` again and re-reviews. You can resubmit until submissions close on 3 January 2027, 23:59 CET. Nothing is accepted after that.
 
 - **Review turnaround:** 1 day
 - **Limit on resubmissions per challenge:** 1 resubmission per challenge

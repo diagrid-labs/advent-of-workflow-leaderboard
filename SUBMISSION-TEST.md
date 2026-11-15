@@ -14,7 +14,7 @@ Task 3 Step 6 (dry-run a submission) could not be run because the GitHub repo do
   - Issues are enabled. Settings > General > Features > Issues, ticked.
   - Settings > Actions > General: no workflow runs on anything in this repo. There are no workflows here.
   - Branch protection on `main`: require a pull request, restrict who can push to maintainers, no force pushes, do not allow bypass. Only maintainers have write access; the standings table is edited by maintainers only.
-- [ ] **Cover for 24 to 28 December.** Name who handles moderation and review while submissions are closed and results are not yet out.
+- [ ] **Cover for 4 to 13 January 2027.** Name who handles moderation and review while submissions are closed and results are not yet out.
 - [ ] Remove this file.
 
 ## Prerequisites
