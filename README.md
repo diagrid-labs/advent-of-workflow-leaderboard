@@ -22,7 +22,7 @@ How to read it:
 
 - **Passes**: challenges whose submission issue is labelled `pass`.
 - **Passed challenges**: one link per passed challenge, to that challenge's submission issue.
-- **Diagrid runs**: how many of the passed challenges also did the optional Diagrid step, with the evidence confirmed by the reviewer. It never affects the order: a Diagrid run earns no extra pass and cannot lift anyone above a participant with more passes. This is the column the two LEGO sets are decided on.
+- **Diagrid runs**: how many of the passed challenges also did the optional Diagrid step, with the evidence confirmed by the reviewer. It never affects the order: a Diagrid run earns no extra pass and cannot lift anyone above a participant with more passes. This is the column the two LEGO® Game Boy™ sets are decided on.
 
 A maintainer regenerates the table from the submission issues. Do not edit it in a pull request.
 
@@ -73,6 +73,8 @@ The verdict is recorded as a label on your issue and as a comment explaining it:
 - Two **LEGO Game Boy** sets: These are awarded to whoever ran the most optional steps in the challenges that use Diagrid. If more than two participants have the same amount of Diagrid-based implementations, two random winners will be chosen from this group.
 
 > Diagrid staff and Dapr maintainers are excluded from prizes. The full rules and the winner criteria are on the landing page.
+>
+> LEGO® is a trademark of the LEGO Group. Game Boy™ is a trademark of Nintendo. Neither sponsors, endorses or is connected with Advent of Workflow.
 
 ## Community
 

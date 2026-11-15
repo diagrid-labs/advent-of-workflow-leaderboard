@@ -78,7 +78,7 @@ body:
       description: >
         Optional. The workflow diagram in the Diagrid web console, for the same workflow run
         on Diagrid. It earns no extra pass and never changes your rank. It is the count the
-        two LEGO Game Boy sets are decided on. Leave this empty to skip it.
+        two LEGO® Game Boy™ sets are decided on. Leave this empty to skip it.
       placeholder: Attach the Diagrid web console screenshot here, or leave empty.
     validations:
       required: false
