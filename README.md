@@ -61,7 +61,7 @@ The verdict is recorded as a label on your issue and as a comment explaining it:
 
 **Resubmitting after a fail:** do not open a new issue. Fix your work and add a comment to the same issue saying it is ready for another look. The reviewer removes the `fail` label, sets `pending` again and re-reviews. You can resubmit until submissions close on 3 January 2027, 23:59 CET. Nothing is accepted after that.
 
-- **Review turnaround:** 1 day
+- **Review turnaround:** 1 day, or 1 working day between 24 December 2026 and 3 January 2027
 - **Limit on resubmissions per challenge:** 1 resubmission per challenge
 
 ## Prizes
