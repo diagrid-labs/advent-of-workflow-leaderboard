@@ -28,10 +28,10 @@ A maintainer regenerates the table from the submission issues. Do not edit it in
 
 ## How to submit
 
-A submission is **an issue in this repo**, not a pull request. You need your work in a public repo and a screenshot. Setup is described in the [challenge repo](https://github.com/diagrid-labs/advent-of-workflow).
+A submission is **an issue in this repo**, not a pull request. You need your work in a public repo, a screenshot, and the output your workflow returned. Setup is described in the [challenge repo](https://github.com/diagrid-labs/advent-of-workflow).
 
 1. Open the [submission form](https://github.com/diagrid-labs/advent-of-workflow-leaderboard/issues/new?template=submission.yml).
-2. Fill in the challenge number, link your work, and drag the screenshot into the screenshot box. Add the optional Diagrid screenshot if you did the bonus step.
+2. Fill in the challenge number, link your work, drag the screenshot into the screenshot box, and paste your workflow's output, including the numbers the challenge asks for. Add the optional Diagrid screenshot if you did the bonus step.
 3. Submit the issue. The reviewer takes it from there.
 
 **One issue per challenge.** Open a separate issue for each challenge you submit. Gaps are fine: do challenge 7 before challenge 1 if you like.
@@ -52,7 +52,7 @@ The submission form is the only issue anyone can open in this repo, and particip
 
 ## Review
 
-A reviewing agent reads the repo you linked and your screenshot, and reports against the challenge's stated criteria. The maintainer ([@marcduiker](https://github.com/marcduiker)) confirms every verdict. Neither `dapr-skills` nor Diagrid is part of the pass criteria: a hand-built workflow running on Dapr OSS passes on the same terms as anything else.
+A reviewing agent checks the numbers in your workflow output, reads the repo you linked and your screenshot, and reports against the challenge's stated criteria. The maintainer ([@marcduiker](https://github.com/marcduiker)) confirms every verdict. Neither `dapr-skills` nor Diagrid is part of the pass criteria: a hand-built workflow running on Dapr OSS passes on the same terms as anything else.
 
 The verdict is recorded as a label on your issue and as a comment explaining it:
 

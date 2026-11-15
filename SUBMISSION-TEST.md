@@ -35,11 +35,11 @@ Task 3 Step 6 (dry-run a submission) could not be run because the GitHub repo do
 
 ## Part 2: a single submission
 
-5. As account A, open the Submission form and submit it with every required field filled: challenge 1, a link to a directory in A's fork, the screenshot dragged into the screenshot box, no bonus, all four declaration boxes ticked.
+5. As account A, open the Submission form and submit it with every required field filled: challenge 1, a link to a directory in A's fork, the screenshot dragged into the screenshot box, a JSON output pasted into the workflow output box, no bonus, all four declaration boxes ticked.
    - Expected: the issue is created with the title prefix `Submission: challenge `, carrying the labels `submission` and `pending`. The screenshot renders inline in the issue body. No GitHub Action runs.
 6. Read the created issue as a logged-out visitor.
-   - Expected: the work link, the screenshot and the declarations are all visible. No email address appears anywhere in it.
-7. As account A, try submitting the form again with the screenshot box empty, or with a declaration box unticked.
+   - Expected: the work link, the screenshot, the workflow output (rendered as a JSON code block) and the declarations are all visible. No email address appears anywhere in it.
+7. As account A, try submitting the form again with the screenshot box empty, the workflow output box empty, or with a declaration box unticked.
    - Expected: GitHub refuses to submit and names the missing required field.
 8. A maintainer reviews it, comments the verdict, swaps `pending` for `pass`, and closes the issue.
    - Expected: the issue is closed and labelled `submission`, `pass`.

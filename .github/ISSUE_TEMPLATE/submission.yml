@@ -60,6 +60,18 @@ body:
       required: true
 
   - type: textarea
+    id: output
+    attributes:
+      label: Workflow output
+      description: >
+        Paste the output your workflow returned for the challenge's input, as JSON. It must
+        include the numbers the challenge asks you to report. Copy it from the run in the Dapr
+        Dev Dashboard, or from the workflow status call.
+      render: json
+    validations:
+      required: true
+
+  - type: textarea
     id: bonus
     attributes:
       label: Diagrid bonus evidence (optional)
