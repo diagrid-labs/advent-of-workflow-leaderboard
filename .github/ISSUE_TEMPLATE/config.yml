@@ -5,4 +5,7 @@ contact_links:
     about: Everything about Advent of Workflow, including how to register.
   - name: The challenges, and how to set up your machine
     url: https://github.com/diagrid-labs/advent-of-workflow
-    about: Read the challenge repo's README before you submit. Questions belong there, not in an issue here.
+    about: Read the challenge repo's README before you submit.
+  - name: Ask a question
+    url: https://diagrid.ws/dapr-discord
+    about: Questions go to the advent-of-workflow forum channel on the Dapr Discord, which has a topic per challenge. They do not go in issues.
