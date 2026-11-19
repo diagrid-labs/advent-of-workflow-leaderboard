@@ -52,9 +52,10 @@ body:
     attributes:
       label: Screenshot of the workflow run
       description: >
-        Drag the image into this box to attach it. For a Dapr OSS run that is the workflow
-        run detail page in the Dapr Dev Dashboard. For a Diagrid run it is the workflow
-        diagram showing the activities in the Diagrid web console.
+        Drag the image into this box to attach it. It comes from the Dapr Dev Dashboard running
+        on your own machine: open the Workflows page, click your instance ID, and scroll down to
+        the view the challenge asks for, usually the Event History table. A partial capture is
+        accepted when it does not fit on one screen.
       placeholder: Attach the image here.
     validations:
       required: true
@@ -76,10 +77,10 @@ body:
     attributes:
       label: Diagrid bonus evidence (optional)
       description: >
-        Optional. The workflow diagram in the Diagrid web console, for the same workflow run
-        on Diagrid. It earns no extra pass and never changes your rank. It is the count the
-        two LEGO® Game Boy™ sets are decided on. Leave this empty to skip it.
-      placeholder: Attach the Diagrid web console screenshot here, or leave empty.
+        Optional. The workflow graph in the Diagrid console, under Monitoring > Workflows, for
+        the same workflow, run on Diagrid in addition to the Dapr OSS run above. It is the count
+        the two LEGO® Game Boy™ sets are decided on. Leave this empty to skip it.
+      placeholder: Attach the Diagrid workflow graph screenshot here, or leave empty.
     validations:
       required: false
 
