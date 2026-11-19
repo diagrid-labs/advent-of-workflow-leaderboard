@@ -48,7 +48,7 @@ The screenshot is the workflow run detail page in the Dapr Dev Dashboard for a D
 
 ### Issues are the only thing you open here
 
-The submission form is the only issue anyone can open in this repo, and participants do not open pull requests here. A pull request from a participant is closed with a pointer back to the submission form. Questions about a challenge go in a comment on that challenge's issue in the [challenge repo](https://github.com/diagrid-labs/advent-of-workflow), or in **#advent-of-workflow** on the [Dapr Discord](https://diagrid.ws/dapr-discord) for anything that is not about one specific challenge. Everything about rules, prizes and registration is on the [landing page](https://diagrid.io/advent-of-workflow) and in [The rules](#the-rules) below.
+The submission form is the only issue anyone can open in this repo, and participants do not open pull requests here. A pull request from a participant is closed with a pointer back to the submission form. Questions do not go in issues in either repo. Ask them in the **advent-of-workflow** forum channel on the [Dapr Discord](https://diagrid.ws/dapr-discord), which has a topic per challenge. Everything about rules, prizes and registration is on the [landing page](https://diagrid.io/advent-of-workflow) and in [The rules](#the-rules) below.
 
 ## Review
 
@@ -84,7 +84,8 @@ Everything that decides a pass, a rank and a prize. The same rules are on the
 ### Taking part
 
 - Open to everyone. Registration asks for your email, your GitHub handle and where you are with Dapr.
-- Everything runs on open source Dapr on your own machine. No Diagrid account is needed to take part or to earn the badge.
+- **To earn the badge**, everything runs on open source Dapr on your own machine. No Diagrid account is needed, and no account of any kind.
+- **To enter the draw for the two LEGO® Game Boy™ sets**, a free Diagrid account is required. The draw is decided on the optional Diagrid runs, and those cannot be done without one.
 - Build by hand or with an AI agent, in any language Dapr Workflow supports. Neither `dapr-skills` nor Diagrid is part of the pass criteria: a hand-built workflow on open source Dapr passes on identical terms.
 - You can start late. Your rank is how many challenges you pass, not when you started.
 
@@ -102,7 +103,7 @@ Everything that decides a pass, a rank and a prize. The same rules are on the
 - The two LEGO® Game Boy™ sets go to the participants who ran the most optional Diagrid steps. If more than two participants tie, two winners are drawn at random from that group.
 - Diagrid staff and Dapr maintainers are excluded from prizes.
 - You must be 18 or over on the closing date, Sunday 3 January 2027, to receive a LEGO® Game Boy™ set.
-- A set cannot be shipped to a country that the United States or the European Union restricts trade or shipping with. A set that cannot be delivered under these rules goes to the next eligible participant on the same criteria.
+- A set cannot be shipped to a country that the United States or the European Union restricts trade or shipping with, and the giveaway is void where prohibited by law. A set that cannot be delivered under these rules goes to the next eligible participant on the same criteria.
 
 ## Community
 
