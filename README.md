@@ -48,7 +48,7 @@ The screenshot is the workflow run detail page in the Dapr Dev Dashboard for a D
 
 ### Issues are the only thing you open here
 
-The submission form is the only issue anyone can open in this repo, and participants do not open pull requests here. A pull request from a participant is closed with a pointer back to the submission form. Questions about a challenge go in a comment on that challenge's issue in the [challenge repo](https://github.com/diagrid-labs/advent-of-workflow), and everything about rules, prizes and registration is on the [landing page](https://diagrid.io/advent-of-workflow).
+The submission form is the only issue anyone can open in this repo, and participants do not open pull requests here. A pull request from a participant is closed with a pointer back to the submission form. Questions about a challenge go in a comment on that challenge's issue in the [challenge repo](https://github.com/diagrid-labs/advent-of-workflow), or in **#advent-of-workflow** on the [Dapr Discord](https://diagrid.ws/dapr-discord) for anything that is not about one specific challenge. Everything about rules, prizes and registration is on the [landing page](https://diagrid.io/advent-of-workflow) and in [The rules](#the-rules) below.
 
 ## Review
 
@@ -59,7 +59,7 @@ The verdict is recorded as a label on your issue and as a comment explaining it:
 - **`pass`** — the issue is closed and the standings are updated.
 - **`fail`** — the issue stays **open**, labelled `fail`, with a comment saying what is missing.
 
-**Resubmitting after a fail:** do not open a new issue. Fix your work and add a comment to the same issue saying it is ready for another look. The reviewer removes the `fail` label, sets `pending` again and re-reviews. You can resubmit until submissions close on 3 January 2027, 23:59 CET. Nothing is accepted after that.
+**Resubmitting after a fail:** do not open a new issue. Fix your work and add a comment to the same issue saying it is ready for another look. The reviewer removes the `fail` label, sets `pending` again and re-reviews. You get **one** resubmission per challenge, and it has to arrive before submissions close on 3 January 2027, 23:59 CET. Nothing is accepted after that.
 
 - **Review turnaround:** 1 day, or 1 working day between 24 December 2026 and 3 January 2027
 - **Limit on resubmissions per challenge:** 1 resubmission per challenge
@@ -72,10 +72,40 @@ The verdict is recorded as a label on your issue and as a comment explaining it:
 
 - Two **LEGO Game Boy** sets: These are awarded to whoever ran the most optional steps in the challenges that use Diagrid. If more than two participants have the same amount of Diagrid-based implementations, two random winners will be chosen from this group.
 
-> Diagrid staff and Dapr maintainers are excluded from prizes. The full rules and the winner criteria are on the landing page.
+> Diagrid staff and Dapr maintainers are excluded from prizes. The age and shipping restrictions on the LEGO® Game Boy™ sets are in [The rules](#the-rules) below.
 >
 > LEGO® is a trademark of the LEGO Group. Game Boy™ is a trademark of Nintendo. Neither sponsors, endorses or is connected with Advent of Workflow.
+
+## The rules
+
+Everything that decides a pass, a rank and a prize. The same rules are on the
+[landing page](https://diagrid.io/advent-of-workflow).
+
+### Taking part
+
+- Open to everyone. Registration asks for your email, your GitHub handle and where you are with Dapr.
+- Everything runs on open source Dapr on your own machine. No Diagrid account is needed to take part or to earn the badge.
+- Build by hand or with an AI agent, in any language Dapr Workflow supports. Neither `dapr-skills` nor Diagrid is part of the pass criteria: a hand-built workflow on open source Dapr passes on identical terms.
+- You can start late. Your rank is how many challenges you pass, not when you started.
+
+### Submissions and review
+
+- One submission issue per challenge, in this repo, never a pull request.
+- Your evidence is a screenshot: the workflow run detail page in the Dev Dashboard for an open source Dapr run, or the workflow diagram in the Diagrid console for a Diagrid run.
+- Reviews land within a day, or within a working day between 24 December 2026 and 3 January 2027.
+- A fail leaves your issue open with a comment saying what is missing. You get one resubmission per challenge, by commenting on that same issue.
+- Submissions close Sunday 3 January 2027, 23:59 CET, and nothing is accepted after that. Results are announced Wednesday 13 January 2027.
+
+### Prizes
+
+- The Holopin award goes to everyone who passes all twelve challenges. It is digital, it never needs Diagrid, and it carries no age or shipping restriction.
+- The two LEGO® Game Boy™ sets go to the participants who ran the most optional Diagrid steps. If more than two participants tie, two winners are drawn at random from that group.
+- Diagrid staff and Dapr maintainers are excluded from prizes.
+- You must be 18 or over on the closing date, Sunday 3 January 2027, to receive a LEGO® Game Boy™ set.
+- A set cannot be shipped to a country that the United States or the European Union restricts trade or shipping with. A set that cannot be delivered under these rules goes to the next eligible participant on the same criteria.
 
 ## Community
 
 Be kind. This project follows the [Code of Conduct](CODE_OF_CONDUCT.md). The repo name carries no year on purpose, so a future run can reuse it.
+
+Come and build along in **#advent-of-workflow** on the [Dapr Discord](https://diagrid.ws/dapr-discord).
