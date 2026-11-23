@@ -48,7 +48,7 @@ The screenshot is the workflow run detail page in the Dapr Dev Dashboard for a D
 
 ### Issues are the only thing you open here
 
-The submission form is the only issue anyone can open in this repo, and participants do not open pull requests here. A pull request from a participant is closed with a pointer back to the submission form. Questions do not go in issues in either repo. Ask them in the **advent-of-workflow** forum channel on the [Dapr Discord](https://diagrid.ws/dapr-discord), which has a topic per challenge. Everything about rules, prizes and registration is on the [landing page](https://diagrid.io/advent-of-workflow) and in [The rules](#the-rules) below.
+The submission form is the only issue anyone can open in this repo, and participants do not open pull requests here. A pull request from a participant is closed with a pointer back to the submission form. Questions do not go in issues in either repo. Ask them in the **advent-of-workflow** forum channel on the [Dapr Discord](https://discord.gg/VjzDF7H5jV), which has a topic per challenge. Everything about rules, prizes and registration is on the [landing page](https://diagrid.io/advent-of-workflow) and in [The rules](#the-rules) below.
 
 ## Review
 
@@ -109,4 +109,4 @@ Everything that decides a pass, a rank and a prize. The same rules are on the
 
 Be kind. This project follows the [Code of Conduct](CODE_OF_CONDUCT.md). The repo name carries no year on purpose, so a future run can reuse it.
 
-Come and build along in **#advent-of-workflow** on the [Dapr Discord](https://diagrid.ws/dapr-discord).
+Come and build along in **#advent-of-workflow** on the [Dapr Discord](https://discord.gg/VjzDF7H5jV).
