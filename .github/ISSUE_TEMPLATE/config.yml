@@ -7,5 +7,5 @@ contact_links:
     url: https://github.com/diagrid-labs/advent-of-workflow
     about: Read the challenge repo's README before you submit.
   - name: Ask a question
-    url: https://diagrid.ws/dapr-discord
-    about: Questions go to the advent-of-workflow forum channel on the Dapr Discord, which has a topic per challenge. They do not go in issues.
+    url: https://discord.gg/VjzDF7H5jV
+    about: Questions do not go in issues. They go in the advent-of-workflow forum channel on the Dapr Discord, which this link opens.
