@@ -31,18 +31,20 @@ class ParseChallengeTest(unittest.TestCase):
 
 class FindFinishersTest(unittest.TestCase):
     def test_finishers_need_all_twelve_distinct(self):
-        finishers, unreadable = find_finishers(ISSUES, excluded={"carol"})
-        self.assertEqual(finishers, {"alice": 112, "erin": 405})
+        finishers, unreadable = find_finishers(ISSUES)
+        self.assertEqual(set(finishers), {"alice", "carol", "erin"})
+        self.assertEqual((finishers["alice"], finishers["erin"]), (112, 405))
         self.assertNotIn("bob", finishers)
         self.assertNotIn("dave", finishers)
 
     def test_unreadable_issues_are_reported(self):
-        _, unreadable = find_finishers(ISSUES, excluded=set())
+        _, unreadable = find_finishers(ISSUES)
         self.assertEqual(unreadable, [299])
 
-    def test_excluded_handle_gets_no_badge(self):
-        finishers, _ = find_finishers(ISSUES, excluded={"Carol"})
-        self.assertNotIn("carol", finishers)
+    def test_staff_and_maintainers_get_the_badge_too(self):
+        # Decided 26 November 2026: only the LEGO sets exclude anyone.
+        with self.assertRaises(TypeError):
+            find_finishers(ISSUES, excluded={"carol"})
 
 
 class AwardCommentTest(unittest.TestCase):
@@ -81,16 +83,16 @@ class SafetyTest(unittest.TestCase):
             check_complete([{}] * 1000, limit=1000)
         check_complete([{}] * 999, limit=1000)
 
-    def test_post_requires_an_exclusion_file(self):
+    def test_post_needs_no_exclusion_file(self):
+        self.assertTrue(parse_args(["--post"]).post)
         with self.assertRaises(SystemExit):
-            parse_args(["--post"])
-        self.assertTrue(parse_args(["--post", "--exclude", "x.txt"]).post)
+            parse_args(["--post", "--exclude", "x.txt"])
 
     def test_deleted_accounts_are_never_finishers(self):
         ghosts = [{"number": 900 + c, "author": None if c % 2 else {"login": "ghost"},
                    "body": f"### Challenge number\n\n{c}\n", "closedAt": "2026-12-20T00:00:00Z"}
                   for c in range(1, 13)]
-        finishers, unreadable = find_finishers(ghosts, excluded=set())
+        finishers, unreadable = find_finishers(ghosts)
         self.assertEqual(finishers, {})
         self.assertEqual(unreadable, [901 + i for i in range(12)])
 
