@@ -1,11 +1,11 @@
 import json
+import subprocess
 import tempfile
 import unittest
 from pathlib import Path
 from unittest import mock
 
 import standings
-from holopin_awards import IncompleteIssueList
 from standings import build_rows, find_problems, main, render_block, replace_block
 
 ISSUES = json.loads((Path(__file__).parent / "fixtures" / "standings_issues.json").read_text())
@@ -122,13 +122,41 @@ class MainTest(unittest.TestCase):
         self.assertEqual(self.run_main("--exclude", str(excluded)), 0)
         self.assertIn("[`dave`](https://github.com/dave) †", self.readme.read_text())
 
-    def test_issue_limit_reached_stops(self):
+    def test_issue_limit_reached_stops_with_2(self):
         self.readme.write_text(README)
         with mock.patch.object(standings.subprocess, "run") as run:
             run.return_value.stdout = json.dumps([{}] * standings.ISSUE_LIMIT)
-            with self.assertRaises(IncompleteIssueList):
-                main(["--readme", str(self.readme)])
+            self.assertEqual(main(["--readme", str(self.readme), "--check"]), 2)
         self.assertEqual(self.readme.read_text(), README)
+
+    def test_gh_failure_or_missing_returns_2_not_1(self):
+        self.readme.write_text(README)
+        for error in (subprocess.CalledProcessError(1, ["gh"]), FileNotFoundError("gh")):
+            with mock.patch.object(standings.subprocess, "run", side_effect=error):
+                self.assertEqual(main(["--readme", str(self.readme), "--check"]), 2)
+
+    def test_crlf_readme_keeps_its_line_endings(self):
+        crlf = README.replace("\n", "\r\n").encode()
+        self.readme.write_bytes(crlf)
+        self.assertEqual(self.run_main(), 0)
+        data = self.readme.read_bytes()
+        self.assertEqual(data.count(b"\r\n"), data.count(b"\n"))
+        self.assertTrue(data.startswith(b"intro\r\n") and data.endswith(b"outro\r\n"))
+        self.assertEqual(self.run_main("--check"), 0)
+
+    def test_check_sees_a_line_ending_only_difference(self):
+        self.readme.write_text(README)
+        self.run_main()
+        mixed = self.readme.read_bytes().replace(b"| 1 |", b"| 1 |", 1).replace(b"\n", b"\r\n", 1)
+        self.readme.write_bytes(mixed)
+        self.assertEqual(self.run_main("--check"), 1)
+
+    def test_exclude_file_with_bom_still_marks_the_first_handle(self):
+        self.readme.write_text(README)
+        excluded = Path(self.dir.name) / "excluded.txt"
+        excluded.write_bytes("\ufeffdave\r\n".encode("utf-8"))
+        self.assertEqual(self.run_main("--exclude", str(excluded)), 0)
+        self.assertIn("[`dave`](https://github.com/dave) †", self.readme.read_text())
 
 
 if __name__ == "__main__":

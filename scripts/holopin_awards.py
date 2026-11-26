@@ -120,7 +120,7 @@ def _gh_json(args: list[str]):
 def _read_excluded(path: str | None) -> set[str]:
     if not path:
         return set()
-    with open(path) as handle_file:
+    with open(path, encoding="utf-8-sig") as handle_file:
         lines = (line.split("#", 1)[0].strip() for line in handle_file)
         return {line.lstrip("@") for line in lines if line}
 

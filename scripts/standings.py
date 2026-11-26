@@ -11,6 +11,9 @@ Usage:
            dagger because they are not eligible for the LEGO sets
 --check    change nothing; exit 1 if README.md is out of date
 
+Exit codes: 0 done or up to date, 1 out of date (--check only), 2 error (gh failed, issue
+limit reached, STANDINGS markers missing or out of order).
+
 Requires Python 3.10+ and the gh CLI.
 """
 
@@ -21,7 +24,8 @@ import sys
 from dataclasses import dataclass
 from pathlib import Path
 
-from holopin_awards import DELETED_LOGINS, REPO, _read_excluded, check_complete, parse_challenge
+from holopin_awards import (DELETED_LOGINS, REPO, IncompleteIssueList, _read_excluded, check_complete,
+                            parse_challenge)
 
 ISSUE_LIMIT = 1000
 START = "<!-- STANDINGS:START -->"
@@ -142,18 +146,26 @@ def _fetch_issues() -> list[dict]:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--exclude", help="file with one excluded GitHub handle per line")
-    parser.add_argument("--check", action="store_true", help="exit 1 if README.md is out of date")
+    parser.add_argument("--check", action="store_true",
+                        help="exit 1 if README.md is out of date (2 means an error)")
     parser.add_argument("--readme", default=str(Path(__file__).resolve().parent.parent / "README.md"))
     args = parser.parse_args(argv)
 
-    issues = _fetch_issues()
+    try:
+        issues = _fetch_issues()
+    except (subprocess.CalledProcessError, FileNotFoundError, IncompleteIssueList) as error:
+        print(f"ERROR  could not read the submission issues: {error}", file=sys.stderr)
+        return 2
     for number, reason in find_problems(issues):
         print(f"PROBLEM  #{number}: {reason}", file=sys.stderr)
 
     path = Path(args.readme)
-    current = path.read_text(encoding="utf-8")
+    current = path.read_bytes().decode("utf-8")
+    block = render_block(build_rows(issues, _read_excluded(args.exclude)))
+    if "\r\n" in current:
+        block = block.replace("\n", "\r\n")
     try:
-        updated = replace_block(current, render_block(build_rows(issues, _read_excluded(args.exclude))))
+        updated = replace_block(current, block)
     except ValueError as error:
         print(f"ERROR  {error}", file=sys.stderr)
         return 2
@@ -163,7 +175,7 @@ def main(argv: list[str] | None = None) -> int:
             return 1
         return 0
     if updated != current:
-        path.write_text(updated, encoding="utf-8")
+        path.write_bytes(updated.encode("utf-8"))
     return 0
 
 
