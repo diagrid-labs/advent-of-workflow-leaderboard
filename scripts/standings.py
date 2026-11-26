@@ -2,11 +2,34 @@
 
 Rank is the number of distinct challenges passed. Equal passes share a rank (dense: 1, 1, 2)
 and are listed by handle, ignoring case. Diagrid runs are shown but never affect order.
+Only the text between the STANDINGS markers changes. The script never commits or pushes.
+
+Usage:
+    python3 scripts/standings.py [--exclude FILE] [--check] [--readme PATH]
+
+--exclude  one GitHub handle per line: Diagrid staff and Dapr maintainers, listed with a
+           dagger because they are not eligible for the LEGO sets
+--check    change nothing; exit 1 if README.md is out of date
+
+Requires Python 3.10+ and the gh CLI.
 """
 
+import argparse
+import json
+import subprocess
+import sys
 from dataclasses import dataclass
+from pathlib import Path
 
-from holopin_awards import DELETED_LOGINS, parse_challenge
+from holopin_awards import DELETED_LOGINS, REPO, _read_excluded, check_complete, parse_challenge
+
+ISSUE_LIMIT = 1000
+START = "<!-- STANDINGS:START -->"
+END = "<!-- STANDINGS:END -->"
+HEADER = "| Rank | Handle | Passes | Passed challenges | Diagrid runs |\n|---|---|---|---|---|\n"
+EXAMPLE = ("| EXAMPLE | `example-handle` (not a real participant, format only) "
+           "| 3 | [1](#) [3](#) [5](#) | 1 |\n")
+FOOTNOTE = "† not eligible for the LEGO® Game Boy™ sets"
 
 
 @dataclass(frozen=True)
@@ -78,3 +101,71 @@ def build_rows(issues: list[dict], excluded: set[str]) -> list[Row]:
             rank, previous = rank + 1, passes
         rows.append(Row(rank, logins[key], passes, links, runs, key in excluded))
     return rows
+
+
+def render_block(rows: list[Row]) -> str:
+    """The text between the markers: the table, and the footnote if anyone is excluded."""
+    if not rows:
+        return "\n" + HEADER + EXAMPLE
+    lines = []
+    for row in rows:
+        handle = f"[`{row.login}`](https://github.com/{row.login})" + (" †" if row.excluded else "")
+        links = " ".join(f"[{c}](https://github.com/{REPO}/issues/{n})" for c, n in row.links)
+        lines.append(f"| {row.rank} | {handle} | {row.passes} | {links} | {row.diagrid_runs} |\n")
+    block = "\n" + HEADER + "".join(lines)
+    if any(row.excluded for row in rows):
+        block += f"\n{FOOTNOTE}\n"
+    return block
+
+
+def replace_block(readme: str, block: str) -> str:
+    """README with the text between the markers replaced by block."""
+    if readme.count(START) != 1 or readme.count(END) != 1:
+        raise ValueError(f"README must contain {START} and {END} exactly once each")
+    start = readme.index(START) + len(START)
+    end = readme.index(END)
+    if end < start:
+        raise ValueError(f"{END} comes before {START}")
+    return readme[:start] + block + readme[end:]
+
+
+def _fetch_issues() -> list[dict]:
+    result = subprocess.run(
+        ["gh", "issue", "list", "-R", REPO, "--label", "submission", "--state", "all",
+         "--limit", str(ISSUE_LIMIT), "--json", "number,author,body,labels,state,closedAt"],
+        check=True, capture_output=True, text=True)
+    issues = json.loads(result.stdout)
+    check_complete(issues, ISSUE_LIMIT)
+    return issues
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument("--exclude", help="file with one excluded GitHub handle per line")
+    parser.add_argument("--check", action="store_true", help="exit 1 if README.md is out of date")
+    parser.add_argument("--readme", default=str(Path(__file__).resolve().parent.parent / "README.md"))
+    args = parser.parse_args(argv)
+
+    issues = _fetch_issues()
+    for number, reason in find_problems(issues):
+        print(f"PROBLEM  #{number}: {reason}", file=sys.stderr)
+
+    path = Path(args.readme)
+    current = path.read_text(encoding="utf-8")
+    try:
+        updated = replace_block(current, render_block(build_rows(issues, _read_excluded(args.exclude))))
+    except ValueError as error:
+        print(f"ERROR  {error}", file=sys.stderr)
+        return 2
+    if args.check:
+        if updated != current:
+            print("README.md standings are out of date", file=sys.stderr)
+            return 1
+        return 0
+    if updated != current:
+        path.write_text(updated, encoding="utf-8")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
