@@ -6,7 +6,7 @@ were missed. It never posts a second award: anyone with an award comment anywher
 repo is skipped, whether or not the bot replied.
 
 Usage:
-    python3 scripts/holopin_awards.py --exclude FILE [--maintainers marcduiker] [--post]
+    python3 scripts/holopin_awards.py [--maintainers marcduiker] [--post]
 
 Requires Python 3.10+ and the gh CLI, authenticated as a maintainer who is an admin or
 owner of the diagrid Holopin organization.
@@ -44,14 +44,13 @@ def _login(issue: dict) -> str:
     return ((issue.get("author") or {}).get("login") or "").lower()
 
 
-def find_finishers(issues: list[dict], excluded: set[str]) -> tuple[dict[str, int], list[int]]:
+def find_finishers(issues: list[dict]) -> tuple[dict[str, int], list[int]]:
     """Map each finisher's handle to their final issue, and list unreadable issues.
 
     A finisher has passed all twelve distinct challenges. Their final issue is the passed
-    issue closed last. Excluded handles are compared case-insensitively. Issues with no
+    issue closed last. Everyone is eligible, Diagrid staff and Dapr maintainers included. Issues with no
     readable challenge number, or by a deleted account, are unreadable.
     """
-    excluded = {handle.lower() for handle in excluded}
     passed: dict[str, set[int]] = {}
     last_closed: dict[str, tuple[str, int]] = {}
     unreadable = []
@@ -68,7 +67,7 @@ def find_finishers(issues: list[dict], excluded: set[str]) -> tuple[dict[str, in
     finishers = {
         handle: last_closed[handle][1]
         for handle, challenges in passed.items()
-        if challenges == CHALLENGES and handle not in excluded
+        if challenges == CHALLENGES
     }
     return finishers, sorted(unreadable)
 
@@ -102,14 +101,10 @@ def check_complete(issues: list, limit: int) -> None:
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument("--exclude", help="file with one excluded GitHub handle per line")
     parser.add_argument("--maintainers", default="marcduiker",
                         help="comma-separated handles whose award comments count")
     parser.add_argument("--post", action="store_true", help="post the missing award comments")
-    args = parser.parse_args(argv)
-    if args.post and not args.exclude:
-        parser.error("--post requires --exclude, so Diagrid staff and Dapr maintainers are left out")
-    return args
+    return parser.parse_args(argv)
 
 
 def _gh_json(args: list[str]):
@@ -118,6 +113,7 @@ def _gh_json(args: list[str]):
 
 
 def _read_excluded(path: str | None) -> set[str]:
+    """Handles from an exclusion file. Used by standings.py for the LEGO sets, not for the badge."""
     if not path:
         return set()
     with open(path, encoding="utf-8-sig") as handle_file:
@@ -135,20 +131,16 @@ def _all_comments() -> list[dict]:
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     maintainers = {m.strip() for m in args.maintainers.split(",") if m.strip()}
-    excluded = _read_excluded(args.exclude)
 
     issues = _gh_json(["issue", "list", "-R", REPO, "--label", "submission", "--label", "pass",
                        "--state", "all", "--limit", str(ISSUE_LIMIT),
                        "--json", "number,author,body,closedAt"])
     check_complete(issues, ISSUE_LIMIT)
-    everyone, unreadable = find_finishers(issues, set())
-    finishers, _ = find_finishers(issues, excluded)
+    finishers, unreadable = find_finishers(issues)
     comments = _all_comments()
 
     for number in unreadable:
         print(f"UNREADABLE  #{number}: no challenge number 1-12, or a deleted account; check by hand")
-    for handle in sorted(set(everyone) - set(finishers)):
-        print(f"excluded    @{handle} (final issue #{everyone[handle]})")
 
     to_post, to_check = [], []
     for handle, final_issue in sorted(finishers.items()):
@@ -164,7 +156,7 @@ def main(argv: list[str] | None = None) -> int:
             to_post.append((handle, final_issue))
 
     print(f"\n{len(finishers)} finishers, {len(to_post)} missing, {len(to_check)} without a bot reply, "
-          f"{len(everyone) - len(finishers)} excluded, {len(unreadable)} unreadable issues")
+          f"{len(unreadable)} unreadable issues")
 
     if args.post:
         for handle, final_issue in to_post:

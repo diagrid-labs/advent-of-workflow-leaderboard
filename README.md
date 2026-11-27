@@ -72,7 +72,7 @@ The verdict is recorded as a label on your issue and as a comment explaining it:
 
 - Two **LEGO Game Boy** sets: These are awarded to whoever ran the most optional steps in the challenges that use Diagrid. If more than two participants have the same amount of Diagrid-based implementations, two random winners will be chosen from this group.
 
-> Diagrid staff and Dapr maintainers are excluded from prizes. The age and shipping restrictions on the LEGO® Game Boy™ sets are in [The rules](#the-rules) below.
+> Diagrid staff and Dapr maintainers can take part and earn the Holopin award, but can't win the LEGO® Game Boy™ sets. The age and shipping restrictions on the LEGO® Game Boy™ sets are in [The rules](#the-rules) below.
 >
 > LEGO® is a trademark of the LEGO Group. Game Boy™ is a trademark of Nintendo. Neither sponsors, endorses or is connected with Advent of Workflow.
 
@@ -101,7 +101,7 @@ Everything that decides a pass, a rank and a prize. The same rules are on the
 
 - The Holopin award goes to everyone who passes all twelve challenges. It is digital, it never needs Diagrid, and it carries no age or shipping restriction.
 - The two LEGO® Game Boy™ sets go to the participants who ran the most optional Diagrid steps. If more than two participants tie, two winners are drawn at random from that group.
-- Diagrid staff and Dapr maintainers are excluded from prizes.
+- Diagrid staff and Dapr maintainers can earn the Holopin award, but are excluded from the LEGO® Game Boy™ sets.
 - You must be 18 or over on the closing date, Sunday 3 January 2027, to receive a LEGO® Game Boy™ set.
 - A set cannot be shipped to a country that the United States or the European Union restricts trade or shipping with, and the giveaway is void where prohibited by law. A set that cannot be delivered under these rules goes to the next eligible participant on the same criteria.
 
